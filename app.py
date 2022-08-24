@@ -3,7 +3,7 @@ from flask import Flask, request, redirect, url_for, send_from_directory, render
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from keras.models import Sequential, load_model
 from werkzeug.utils import secure_filename
-import numpy as np
+import numpy as Np
 
 
 
@@ -21,7 +21,7 @@ def allowed_file(filename):
 def predict(file):
     img  = load_img(file, target_size=IMAGE_SIZE)
     img = img_to_array(img)/255.0
-    img = np.expand_dims(img, axis=0)
+    img = Np.expand_dims(img, axis=0)
     probs = vgg16.predict(img)[0]
     output = {'Normal:': probs[0], 'Covid': probs[1], 'Pneumonia':probs[2]}
     return output
